@@ -1,0 +1,53 @@
+#include<iostream>
+#include<math.h>
+#include<fstream>
+
+using namespace std;
+
+int main()
+{
+  int n=9;
+  double*a=new double(9);
+  a[0]=1;
+  a[1]=-1;
+  a[2]=0;
+  a[3]=0;
+  a[4]=1;
+  a[5]=2;
+  a[6]=2;
+  a[7]=-1;
+  a[8]=0;
+
+  double*b=new double(9);
+  b[0]=1;
+  b[1]=-1;
+  b[2]=0;
+  b[3]=0;
+  b[4]=1;
+  b[5]=2;
+  b[6]=2;
+  b[7]=-1;
+  b[8]=0;
+
+        double*c=new double(n);
+	int N=sqrt(n);
+	for(int i=0;i<N;i++)
+	 {
+	for(int j=0;j<N;j++)
+	    {
+		c[j+i*N]=0;
+	for(int k=0;k<N;k++)
+		{
+	      c[j+i*N]+=a[k+i*N]*b[j+k*N];
+		}
+	    }
+	  }
+	for(int i=0;i<N;i++)
+	  {
+	for(int j=0;j<N;j++)
+	    {
+	 cout<<c[j+i*N]<<" ";
+	    }
+	 cout<<"\n";
+	  }
+}

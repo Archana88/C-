@@ -1,0 +1,59 @@
+#include<math.h>
+#include<fstream>
+#include<complex>
+#include<iostream>
+
+using namespace std;
+
+void f(double *x,double *dx,double *param)
+{
+	double w0=param[0],gamma=param[1];
+	dx[0]=x[1];
+	dx[1]=-w0*w0*x[0]-gamma*x[1];
+}
+
+void euler1step(void(*f)(double*,double*,double*),double*x,double *xnew,int N,double h,double *param)
+{
+	double *dx=new double[N];
+	f(x,dx,param);
+	for(int i=0;i<N;i++)
+		{
+		  xnew[i]=x[i]+h*dx[i];
+		}
+}
+
+
+int main ()
+  {
+   int N=2;
+   double xinit=M_PI/3;
+   double *x=new double[N];
+   double *xnew=new double[N];
+   double *param=new double[2];
+   double vinit=0;
+   double  tmin=0;
+   double tmax=10;
+   double Npt=512;
+   double h=(tmax-tmin)/(Npt-1);
+   double gamma=0;
+   double w0=1;
+   param[0]=w0;
+   param[1]=gamma;
+   x[0]=xinit;
+   x[1]=vinit;
+   ofstream file("pend2.txt");
+    for(int i=0;i<Npt;i++)
+      {
+        double t=tmin+i*h;
+        euler1step(f,x,xnew,N,h,param);
+        file<<t<<" "<<xnew[0]<<" "<<xnew[1]<<" "<<xinit*cos(w0*t)<<endl;
+        for(int j=0;j<N;j++)
+         {
+              x[j]=xnew[j];
+         }
+
+      }
+        double error=fabs(xinit*cos(w0*tmin+Npt*h)-xnew[N]);
+        cout<<log(h)<<" "<<log(error)<<endl;
+  }
+

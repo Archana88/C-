@@ -1,0 +1,29 @@
+#include<iostream>
+#include<math.h>
+#include<fstream>
+#include<complex>
+
+using namespace std;
+
+double in_or_out(complex<double>c,int n)
+{
+  complex<double>y0(0,0);
+  int r=2;
+  for(int i=1;i<n;i++)
+    {
+      a=a*a+c;
+    }
+return norm(a);
+}
+
+int main()
+{
+	complex<double>y0(2,0);
+	complex<double>c(0.25,0);
+	int n=200;
+	ofstream EX2("mandel.txt");
+	for(int i=1;i<n;i++)
+	{
+	EX2<<i<<" "<<yn_sq(y0,c,n)<<endl;
+	}
+}

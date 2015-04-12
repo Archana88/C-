@@ -1,0 +1,7 @@
+#include<iostream>
+using namespace std;
+int large(int a,int b)
+{
+  if(a>b)
+    return a;
+else
